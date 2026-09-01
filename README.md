@@ -1,44 +1,41 @@
-# Toucan Payments - Transaction Processing Service
-
-## Overview
+Toucan Payments - Transaction Processing Service
+Overview
 
 This project is a simple transaction processing service built using Java, Spring Boot, Spring Data JPA, and H2 database.
 
 The application supports the following four operations:
 
-- Create a transaction
-- Get a transaction by Transaction ID
-- Update the status of a transaction
-- Get all transactions for a Customer ID
+Create a transaction
+Get a transaction by Transaction ID
+Update the status of a transaction
+Get all transactions for a Customer ID
 
 I kept the project structure simple using Controller, Service, and Repository layers.
 
-## Assumptions and Validation
+Assumptions and Validation
 
 I did not receive any candidate-specific variant in my invitation email, so I used the following validation and business rules:
 
-- Transaction ID is required, cannot be blank, and must be unique.
-- Transaction ID can have a maximum of 50 characters.
-- Customer ID is required, cannot be blank, and can have a maximum of 50 characters.
-- Amount is required, must be greater than 0, and cannot be more than 100,000.00.
-- Supported currencies are INR, USD, and EUR.
-- Supported transaction types are PAYMENT, REFUND, and TRANSFER.
-- Every new transaction starts with PENDING status.
-- PENDING can be changed to COMPLETED or FAILED.
-- COMPLETED and FAILED are final statuses and cannot be changed again.
-- Currency, transaction type, and status are stored in uppercase.
+Transaction ID is required, cannot be blank, and must be unique.
+Transaction ID can have a maximum of 50 characters.
+Customer ID is required, cannot be blank, and can have a maximum of 50 characters.
+Amount is required, must be greater than 0, and cannot be more than 100,000.00.
+Supported currencies are INR, USD, and EUR.
+Supported transaction types are PAYMENT, REFUND, and TRANSFER.
+Every new transaction starts with PENDING status.
+PENDING can be changed to COMPLETED or FAILED.
+COMPLETED and FAILED are final statuses and cannot be changed again.
+Currency, transaction type, and status are stored in uppercase.
 
 These validation rules are my assumptions because no individual candidate-specific variant was provided in my invitation email.
 
-## API Endpoints
+API Endpoints
+1. Create Transaction
 
-### 1. Create Transaction
-
-**POST** `/api/transactions`
+POST /api/transactions
 
 Example request:
 
-```json
 {
   "transactionId": "TX1001",
   "customerId": "CUST1",
