@@ -1,48 +1,50 @@
-Toucan Payments - Transaction Processing Service
+# Toucan Payments - Transaction Processing Service
 
-Overview
+## Overview
 
 This project is a simple transaction processing service built using Java, Spring Boot, Spring Data JPA, and H2 database.
 
 The application supports the following four operations:
 
-Create a transaction
-Get a transaction by Transaction ID
-Update the status of a transaction
-Get all transactions for a Customer ID
+- Create a transaction
+- Get a transaction by Transaction ID
+- Update the status of a transaction
+- Get all transactions for a Customer ID
 
 I kept the project structure simple using Controller, Service, and Repository layers.
 
-Assumptions and Validation
+## Assumptions and Validation
 
 I did not receive any candidate-specific variant in my invitation email, so I used the following validation and business rules:
 
-Transaction ID is required, cannot be blank, and must be unique.
-Transaction ID can have a maximum of 50 characters.
-Customer ID is required, cannot be blank, and can have a maximum of 50 characters.
-Amount is required, must be greater than 0, and cannot be more than 100,000.00.
-Supported currencies are INR, USD, and EUR.
-Supported transaction types are PAYMENT, REFUND, and TRANSFER.
-Every new transaction starts with PENDING status.
-PENDING can be changed to COMPLETED or FAILED.
-COMPLETED and FAILED are final statuses and cannot be changed again.
-Currency, transaction type, and status are stored in uppercase.
+- Transaction ID is required, cannot be blank, and must be unique.
+- Transaction ID can have a maximum of 50 characters.
+- Customer ID is required, cannot be blank, and can have a maximum of 50 characters.
+- Amount is required, must be greater than 0, and cannot be more than 100,000.00.
+- Supported currencies are INR, USD, and EUR.
+- Supported transaction types are PAYMENT, REFUND, and TRANSFER.
+- Every new transaction starts with PENDING status.
+- PENDING can be changed to COMPLETED or FAILED.
+- COMPLETED and FAILED are final statuses and cannot be changed again.
+- Currency, transaction type, and status are stored in uppercase.
 
 These validation rules are my assumptions because no individual candidate-specific variant was provided in my invitation email.
 
-API Endpoints
-1. Create Transaction
+## API Endpoints
 
-POST /api/transactions
+### 1. Create Transaction
+
+**POST** `/api/transactions`
 
 Example request:
 
+```json
 {
-"transactionId": "TX1001",
-"customerId": "CUST1",
-"amount": 500.00,
-"currency": "INR",
-"transactionType": "PAYMENT"
+  "transactionId": "TX1001",
+  "customerId": "CUST1",
+  "amount": 500.00,
+  "currency": "INR",
+  "transactionType": "PAYMENT"
 }
 
 A successful request creates the transaction with PENDING status and returns 201 Created.
@@ -62,7 +64,7 @@ PATCH /api/transactions/{transactionId}/status
 Example request:
 
 {
-"status": "COMPLETED"
+  "status": "COMPLETED"
 }
 
 Allowed status changes are:
@@ -94,7 +96,7 @@ Errors are returned as JSON responses.
 
 Testing
 
-I used both automated tests and manual API testing through PowerShell.
+I used both automated tests and manual API testing through Postman.
 
 The automated tests cover the following scenarios:
 
@@ -108,7 +110,7 @@ Customer transaction lookup
 
 In addition, the starter project contains a Spring application context test to verify that the application starts successfully.
 
-I also manually tested the four APIs and the main negative cases using PowerShell.
+I also manually tested the four APIs and the main negative cases using Postman. I verified the transaction data and status changes using the H2 Console.
 
 The final test suite was executed using:
 
@@ -130,7 +132,7 @@ Database URL:
 
 jdbc:h2:mem:transactions
 
-H2 console:
+H2 Console:
 
 http://localhost:8080/h2-console
 
@@ -167,22 +169,6 @@ No separate database setup is required because the project uses H2.
 
 AI Usage Disclosure
 
-I used an AI coding assistant during the project to understand some Spring Boot concepts, troubleshoot errors, and get suggestions for validation, error handling, and testing.
+AI usage details are documented separately in:
 
-I reviewed the AI suggestions and adapted them to the existing starter project's structure and requirements rather than using them without review.
-
-During development, I faced issues such as a Java version mismatch and a port 8080 conflict. I investigated and fixed these issues and verified that the application continued to work correctly.
-
-I also manually tested the APIs using PowerShell, including successful requests and important negative cases.
-
-Finally, I verified the complete project using:
-
-.\mvnw.cmd clean test
-
-The final test run completed successfully with:
-
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0
-
-BUILD SUCCESS
-
-This confirmed that the final implementation builds successfully and all automated tests pass.
+AI_USAGE_DISCLOSURE.md

@@ -9,7 +9,7 @@ How I Used ChatGPT
 I used ChatGPT mainly for:
 
 Understanding Spring Boot and Spring Data JPA concepts.
-Understanding the Controller, Service, Repository, DTO, and exception handling structure.
+Understanding the Controller, Service, Repository, DTO, Entity, and exception handling structure.
 Getting suggestions for transaction validation rules.
 Understanding REST API design and HTTP status codes.
 Troubleshooting compilation and runtime errors.
@@ -28,27 +28,38 @@ README and project documentation.
 
 I reviewed the suggestions and adapted them to the requirements of the Toucan Payments assignment and the existing starter project.
 
-My Review and Changes
+My Review, Changes, and Corrections
 
 I did not blindly use AI-generated code.
 
-I reviewed the suggestions, made the necessary changes, and verified the implementation against the project requirements.
+I reviewed the suggestions, made the necessary changes, and verified the implementation against the project requirements and the existing starter project.
 
-I manually tested the APIs using Postman, including successful requests and important negative cases.
+I decided the validation rules used in the application based on the assignment requirement that candidates must define and document their own validation rules.
+
+I also reviewed the suggested API structure and kept the implementation simple using Controller, Service, Repository, DTO, and Entity layers.
 
 During development, I encountered issues such as a Java version mismatch and a port 8080 conflict. I investigated and fixed these issues and verified that the application worked correctly afterward.
 
-Verification
+I did not identify any specific AI-generated code suggestion that was incorrect after reviewing and testing it. Where suggestions were provided, I verified them against the assignment requirements before applying them.
 
-I verified the final implementation by:
+Testing and Verification
 
-Running the complete Maven test suite.
-Checking that all automated tests passed.
-Manually testing the APIs using Postman.
-Testing validation and error scenarios.
-Testing duplicate transaction handling.
-Testing transaction status updates.
-Testing transaction-not-found behavior.
+I manually tested the APIs using Postman, including successful requests and important negative cases.
+
+I also verified the transaction data and changes using the H2 Console.
+
+I verified:
+
+Successful transaction creation.
+Transaction retrieval.
+Customer transaction retrieval.
+Transaction status update.
+Duplicate transaction ID handling.
+Validation failure handling.
+Transaction-not-found handling.
+Invalid status transition handling.
+
+I also ran the complete Maven test suite using PowerShell to verify the automated tests.
 
 The final test run was:
 
@@ -56,4 +67,4 @@ Tests run: 8, Failures: 0, Errors: 0, Skipped: 0
 
 BUILD SUCCESS
 
-The final implementation was reviewed and tested by me, and the complete automated test suite passed successfully.
+The final implementation was reviewed and tested by me using automated tests, Postman, PowerShell, and the H2 Console. The complete automated test suite passed successfully.
